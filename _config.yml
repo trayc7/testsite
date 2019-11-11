@@ -90,8 +90,10 @@ defaults:
 theme: jekyll-theme-advanced-prologue
 collections:
   sections:
+    permalink: /sections/:slug.html
     output: false
   others:
+    permalink: /others/:slug.html
     output: true
 
 theme-options:

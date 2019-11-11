@@ -2,9 +2,9 @@
 
 Gem::Specification.new do |spec|
   spec.name          = "jekyll-theme-advanced-prologue"
-  spec.version       = "0.0.2"
+  spec.version       = "0.0.4"
   spec.authors       = ["HTML5 UP", "Chris Bobbe","Fernando Ariznavarreta"]
-  spec.email         = []
+  spec.email         = [""]
 
   spec.summary       = %q{A modified version of the Jekyll Prologue theme by HTML5 UP.}
   spec.description   = "A modified version of the Jekyll Prologue theme by ChrisBobbe."

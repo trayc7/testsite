@@ -1,11 +1,13 @@
 {%- comment -%}
   Include vars:
   section_items
+  linktofullpage
 {%- endcomment -%}
 
 <!-- Nav -->
 <nav id="nav">
   <ul>
+    <li>linktofullpage: {{ include.linktofullpage }} </li>
     {%- assign _pages = site.html_pages | where_exp: "page", "page.hide != true" -%}
     {%- unless _pages == null -%}
       {%- assign _pages = _pages | sort: 'order' -%}
@@ -26,11 +28,11 @@
             <span class="{{ _class }} {{ _icon }}">{{- _title -}}</span>
           </a></li>
         {%- elsif _page.url -%}
-          <li><a href="{{- _page.url | absolute_url -}}" id="{{- _slug -}}-link">
+          <li><a href="{{- _page.url -}}" id="{{- _slug -}}-link">
             <span class="{{ _class }} {{ _icon }}">{{- _title -}}</span>
           </a></li>
         {%- else -%}
-          <li><a href="{{- '/' | absolute_url -}}" id="broken-link"><span class="icon fa-unlink">[broken link]</span></a></li>
+          <li><a href="{{- '/' -}}" id="broken-link"><span class="icon fa-unlink">[broken link]</span></a></li>
         {%- endif -%}
       {%- endfor -%}
     {%- endunless -%}
@@ -48,7 +50,11 @@
         {%- else -%}
           {%- assign _class = 'icon' -%}
         {%- endif -%}
-        <li><a href="#{{- _slug -}}" id="{{- _slug -}}-link" class="scrolly"><span class="{{ _class }} {{ _icon }}">{{- _title -}}</span></a></li>
+        {%- if include.linktofullpage -%}
+          <li><a href="{{- _sect.url -}}" id="{{- _slug -}}-link" class="scrolly"><span class="{{ _class }} {{ _icon }}">{{- _title -}}</span></a></li>
+        {%- else -%}
+          <li><a href="#{{- _slug -}}" id="{{- _slug -}}-link" class="scrolly"><span class="{{ _class }} {{ _icon }}">{{- _title -}}</span></a></li>
+        {%- endif -%}
       {%- endfor -%}
     {%- endunless -%}
   </ul>

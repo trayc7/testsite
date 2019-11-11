@@ -1,7 +1,14 @@
 ---
 layout: default
 ---
-{%- include header.html -%}
+{%- if page.collection and page.collection != "" -%}
+  {%- assign _collection = site.collections | where: "label" , page.collection | first -%}
+	{%- assign _sections = _collection.docs | sort: 'order' -%}
+{%- else -%}
+  {%- assign _collection = site.collections | where: "label" , "sections" | first -%}
+	{%- assign _sections = nil -%}
+{%- endif -%}
+{%- include header.html scrolly_nav=_sections linktofullpage= true -%}
 
 <!-- Main -->
 <div id="main">

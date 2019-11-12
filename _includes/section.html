@@ -1,11 +1,13 @@
 {%- comment -%}
   Include vars:
-	title
+	title: title of section (page in a collection) to display
   subtitle
 	photo
 	photo-alt
 	auto-header
 	content
+  categories: List of categories the section belongs to.
+  linktofullpage: if true, links are url to the full page, if false are slug bookmarks in current page
 {%- endcomment -%}
 
 {%- assign _title = include.title | default: 'Untitled' -%}
@@ -41,6 +43,7 @@
         </a>
       </h2>
       {%- if include.subtitle -%}<p>{{- include.subtitle -}}</p>{%- endif -%}
+      {%- include categoriesbar.html categories= include.categories -%}
 		</header>
 	{%- endcapture -%}
 {%- endif -%}

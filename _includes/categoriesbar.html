@@ -4,7 +4,7 @@
   categories: list of categories to generate the bar.
 {%- endcomment -%}
 
-{%- if include.categories -%}
+{%- if include.categories.size !=0 -%}
   {%- assign _output_ext= site.output_ext -%}
     <p>{{ _themeOp_categorieslabel }}:
     {%- for _cat in include.categories -%}

@@ -21,9 +21,9 @@ layout: default
     {%- if _output  -%}
       {%- capture _excerpt -%}<p>{{- _section.excerpt | strip_html | truncatewords: 100 -}}</p>{%- endcapture -%}
       {%- capture _link -%}<a href="{{- _section.url -}}">{{- _themeOp_readmorelabel -}}</a>{%- endcapture -%}			{%- assign _content = _excerpt | append: _link -%}
-      {%- include section.html title=_section.title photo=_section.cover-photo photo-alt=_section.cover-photo-alt auto-header=_section.auto-header content=_content -%}
+      {%- include section.html title=_section.title photo=_section.cover-photo photo-alt=_section.cover-photo-alt auto-header=_section.auto-header content=_content  categories= _section.categories linktofullpage= true -%}
     {%- else -%}
-      {%- include section.html title=_section.title photo=_section.cover-photo photo-alt=_section.cover-photo-alt auto-header=_section.auto-header content=_section.content -%}
+      {%- include section.html title=_section.title photo=_section.cover-photo photo-alt=_section.cover-photo-alt auto-header=_section.auto-header content=_section.content categories= _section.categories -%}
     {%- endif -%}
 	{%- endfor -%}
 </div>

@@ -19,7 +19,8 @@ layout: default
 			<header>
 				<h2><a href="{{- page.url -}}">{{- page.title -}}</a></h2>
 				<p>{% if page.author %}{{ page.author }}, {% endif %}{{- page.date | date_to_long_string -}}</p>
-			</header>
+        {%- include categoriesbar.html categories= page.categories -%}
+		</header>
 	    {{- content -}}
 	  </div>
 	</article>

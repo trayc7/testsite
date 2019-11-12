@@ -1,6 +1,7 @@
 ---
 title: Welcome to Jekyll!
 icon: fa-comment
+categories: [wellcome]
 order: 1
 ---
 

@@ -24,14 +24,21 @@
 {%- if include.auto-header == 'none' -%}
 	{%- assign _heading = "" -%}
 {%- else -%}
+  {%- if linktofullpage -%}
+    {%- assign _linkurl= page.url -%}
+  {%- else -%}
+    {%- assign _linkurl= _slug | prepend: '#' -%}
+  {%- endif -%}
 	{%- capture _heading -%}
 		<header>
 			<h2>
+        <a href= "{{ _linkurl }}">
         {%- if include.auto-header == null or include.auto-header == 'use-title' -%}
           {{- _title -}}
         {%- else -%}
           {{- include.auto-header -}}
         {%- endif -%}
+        </a>
       </h2>
       {%- if include.subtitle -%}<p>{{- include.subtitle -}}</p>{%- endif -%}
 		</header>

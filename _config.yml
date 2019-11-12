@@ -90,12 +90,14 @@ defaults:
 theme: jekyll-theme-advanced-prologue
 collections:
   sections:
-    permalink: /sections/:slug.html
     output: false
   others:
-    permalink: /others/:slug.html
     output: true
 
 theme-options:
   #text to show in the read me links after exerpts
   readmorelabel: "<<read more>>"
+  #Label to use for categories
+  categorieslabel: "Categorías"
+  #Label to use for tags
+  tagslabel: "Tags"

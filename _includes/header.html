@@ -1,6 +1,6 @@
 {%- comment -%}
   Include vars:
-  scrolly_nav
+  items_nav:
   linktofullpage
 {%- endcomment -%}
 
@@ -8,7 +8,7 @@
 <div id="header">
   <div class="top">
     {%- include logo.html -%}
-    {%- include nav.html section_items=include.scrolly_nav linktofullpage= include.linktofullpage -%}
+    {%- include nav.html items_nav=include.items_nav linktofullpage= include.linktofullpage -%}
   </div>
   <div class="bottom">
     {%- include social_icons.html -%}

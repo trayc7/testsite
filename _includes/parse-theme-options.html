@@ -12,11 +12,11 @@ It creates a variable _parsedThemeOp with corresponding parsed vars.
 {%- if site.theme-options.categoriespage and site.theme-options.categoriespage != "" -%}
   {%- assign _themeOp_categoriespage= site.theme-options.categoriespage | escape_once -%}
 {%- else -%}
-  {%- assign _themeOp_categoriespage= _themeOp_categorieslabel |downcase | append: output_ext -%}
+  {%- assign _themeOp_categoriespage= _themeOp_categorieslabel |downcase -%}
 {%- endif -%}
-
+{%- comment -%}
 In include parse-theme-options.html<br />
-output_ext: {{ site.output_ext }}
 _themeOp_readmorelabel: {{ _themeOp_readmorelabel }}<br />
 _themeOp_categorieslabel: {{ _themeOp_categorieslabel }}<br />
 _themeOp_categoriespage: {{ _themeOp_categoriespage }}<br />
+{%- endcomment -%}

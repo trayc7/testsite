@@ -1,0 +1,29 @@
+º{%- comment -%}
+  Create the elements of the navigator bar
+
+  Include vars:
+  bookmaks: list of sections to create links to navigate to
+  linktofullpage: if true, links are url to the full page, if false are slug bookmarks in current page
+{%- endcomment -%}
+
+
+<!-- NavList -->
+<nav id="nav">
+  <ul>
+      {%- for _bm in _bookmarks -%}
+         {%- assign _icon= 'fa-file' -%}
+         {%- if _sect.icon-style == 'regular' -%}
+          {%- assign _class = 'icon-r' -%}
+        {%- elsif _sect.icon-style == 'brands' -%}
+          {%- assign _class = 'icon-b' -%}
+        {%- else -%}
+          {%- assign _class = 'icon' -%}
+        {%- endif -%}
+       <li><a href=
+          #{{- _bm -}}
+          id="{{- #_cat -}}-link" class="scrolly"><span class="{{ _class }} {{ _icon }}">{{- _cat -}}</span></a>
+        </li>
+      {%- endfor -%}
+    {%- endunless -%}
+  </ul>
+</nav>

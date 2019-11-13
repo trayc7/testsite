@@ -7,7 +7,18 @@ layout: default
   {%- if page.content != "" -%}
 		{%- include section.html title=page.title photo=page.cover-photo photo-alt=page.cover-photo-alt auto-header=page.auto-header content=page.content -%}
 	{%- endif -%}
-  {%- for _col in site.collections -%}
+	{}
+	<!-- NavList -->
+	<nav id="nav">
+		<ul>
+		{%- for _col in site.collections -%}
+		<li>
+		
+		</li>
+		{%- endfor -%}
+		</ul>
+	</nav>
+	{%- for _col in site.collections -%}
     <section id="#{{- _col.label -}}" class="shade-one">
     <h2><a href="#{{- _col.label -}}"> {{ _col.label }} #{{ _col.docs.size }}</a></h2>
     </section>
@@ -15,22 +26,22 @@ layout: default
     {%- for _cat in _cats -%}
       {%- assign _posts= _col.docs | where: "categories",_cat.name -%}
       <section id="#{{- _col.label -}}/{{- _cat.name -}}" class="shade-two">
-      <h3><a href="#{{- _col.label -}}/{{- _cat.name -}}"> {{ _cat.name }} #{{_posts.size}}</a> </h3>
+        <h3><a href="#{{- _col.label -}}/{{- _cat.name -}}"> {{ _cat.name }} #{{_posts.size}}</a> </h3>
       </section>
       <!-- Document List -->
-    	{%- for _post in _posts -%}
-    		{%- capture _title -%}
-    			<a href="{{- _post.url -}}">{{- _post.title -}}</a>
-    		{%- endcapture -%}
-    		{%- capture _subtitle -%}
-    			{% if _post.author -%}{{- _post.author }} | {% endif %}
-    			{{- _post.date | date_to_long_string -}}
-    		{%- endcapture -%}
-    		{%- capture _excerpt -%}<p>{{- _post.excerpt | strip_html | truncatewords: 100 -}}</p>{%- endcapture -%}
-    		{%- capture _link -%}<a href="{{- _post.url -}}">{{- _themeOp_readmorelabel -}}</a>{%- endcapture -%}
-    		{%- assign _content = _excerpt | append: _link -%}
-    		{%- include docreference.html title=_title subtitle=_subtitle content= _excerpt collection=_col.label linktofullpage= _col.output -%}
-    	{%- endfor -%}
+      {%- for _post in _posts -%}
+        {%- capture _title -%}
+          <a href="{{- _post.url -}}">{{- _post.title -}}</a>
+        {%- endcapture -%}
+        {%- capture _subtitle -%}
+          {% if _post.author -%}{{- _post.author }} | {% endif %}
+          {{- _post.date | date_to_long_string -}}
+        {%- endcapture -%}
+        {%- capture _excerpt -%}<p>{{- _post.excerpt | strip_html | truncatewords: 100 -}}</p>{%- endcapture -%}
+        {%- capture _link -%}<a href="{{- _post.url -}}">{{- _themeOp_readmorelabel -}}</a>{%- endcapture -%}
+        {%- assign _content = _excerpt | append: _link -%}
+        {%- include docreference.html title=_title subtitle=_subtitle content= _excerpt collection=_col.label linktofullpage= _col.output -%}
+      {%- endfor -%}
     {%- endfor -%}
   {%- endfor -%}
 </div>

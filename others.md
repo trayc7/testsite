@@ -9,7 +9,7 @@ auto-header: none
 collection: others
 title: Other Collection
 icon: fa-hotel
-order: 2
+order: 5
 ---
 <header>
   <h2 class="alt">This is other Collection with more sections inside it<br />

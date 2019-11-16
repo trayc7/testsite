@@ -1,9 +1,0 @@
-{%- comment -%}
-  Create the elements of the navigator bar
-
-  Include vars:
-  items_nav: list of sections to create links to navigate to
-  linktofullpage: if true, links are url to the full page, if false are slug bookmarks in current page
-{%- endcomment -%}
-{%- include navroot.html -%}
-{%- include navlist.html items_nav= include.items_nav linktofullpage= include.linktofullpage -%}

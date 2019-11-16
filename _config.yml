@@ -25,6 +25,17 @@
 # For technical reasons, this file is *NOT* reloaded automatically when you use
 # 'bundle exec jekyll serve'. If you change this file, please restart the server process.
 
+#Exclude from the build files in / not needed for the generated Site
+exclude:
+  - .*
+  - geminstall.sh
+  - Gemfile
+  - Gemfile.*
+  - jekyll-*.gem
+  - jekyll-*.gemspec
+  - README.md
+  - LICENSE.md
+
 # Site settings
 # These are used to personalize your new site. If you look in the HTML files,
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
@@ -41,8 +52,8 @@ email: /#contact
 avatar: assets/images/avatar.jpg
 
 # You'll want to customize url and baseurl for your own site:
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site
+baseurl: "/" # the subpath of your site, e.g. /blog
+url: "https://myawsomewebsite.com" # the base hostname & protocol for your site
 
 # Social settings
 # Make sure to include the full url including protocol, e.g. https://github.com/chrisbobbe
@@ -58,6 +69,13 @@ dribbble_url:
 
 # Google Analytics Tracking ID goes here:
 google_analytics:
+
+# stablish the permalink for generating url.
+# permalink reflects collection, categories, date, and slug.
+# elements that don't have some of these (pages with no category and which have no date) would work
+# by letting empty that separator.
+# For example a page with title "Page" outside any collection woul have a /page.html permalink.
+permalink: /:collection/:categories/:year/:month/:title
 
 #Stablish default layouts for posts and collections
 defaults:
@@ -83,11 +101,14 @@ defaults:
 theme: jekyll-theme-advanced-prologue
 collections:
   sections:
-    permalink: /sections/:slug.html
     output: false
   others:
-    permalink: /others/:slug.html
     output: true
 
 theme-options:
+  #text to show in the read me links after exerpts
   readmorelabel: "<<read more>>"
+  #Label to use for categories
+  categorieslabel: "Categories"
+  #Label to use for tags
+  tagslabel: "Tags"

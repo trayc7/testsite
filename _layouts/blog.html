@@ -1,16 +1,19 @@
 ---
 layout: default
 ---
-{%- assign _posts = site.posts | sort: 'date' | reverse -%}
-{%- include header.html scrolly_nav=_posts -%}
+{%- include parse-theme-options.html -%}
 
-<!-- get the label to use in read more links if one is configured in _config.yml -->
-{%- if site.theme-options.readmorelabel and site.theme-options.readmorelabel != "" -%}
-  {%- assign _readmorelabel = site.theme-options.readmorelabel -%}
+{%- comment -%}
+  If the page names a collection, list the elements within that collection with a post layout.
+	If it does not specify a collection, use the site posts.
+{%- endcomment -%}
+{%- if page.collection and page.collection != "" -%}
+  {%- assign _collection = site.collections | where: "label" , page.collection | first -%}
+	{%- assign _posts = _collection.docs |where: "type", "post" |  sort: 'date' | reverse -%}
 {%- else -%}
-  {%- assign _readmorelabel = "Read more" -%}
+	{%- assign _posts = site.posts | sort: 'date' | reverse -%}
 {%- endif -%}
-
+{%- include header.html items_nav=_posts -%}
 
 <!-- Main -->
 <div id="main">
@@ -20,15 +23,15 @@ layout: default
 	<!-- Posts List -->
 	{%- for _post in _posts -%}
 		{%- capture _title -%}
-			<a href="{{- _post.url | absolute_url -}}">{{- _post.title -}}</a>
+			<a href="{{- _post.url -}}">{{- _post.title -}}</a>
 		{%- endcapture -%}
 		{%- capture _subtitle -%}
 			{% if _post.author -%}{{- _post.author }} | {% endif %}
 			{{- _post.date | date_to_long_string -}}
 		{%- endcapture -%}
 		{%- capture _excerpt -%}<p>{{- _post.excerpt | strip_html | truncatewords: 100 -}}</p>{%- endcapture -%}
-		{%- capture _link -%}<a href="{{- _post.url | absolute_url -}}">{{- _readmorelabel | escape -}}</a>{%- endcapture -%}
+		{%- capture _link -%}<a href="{{- _post.url -}}">{{- _themeOp_readmorelabel -}}</a>{%- endcapture -%}
 		{%- assign _content = _excerpt | append: _link -%}
-		{%- include section.html title=_title subtitle=_subtitle content=_content -%}
+		{%- include section.html title=_title subtitle=_subtitle content=_content collection="posts" categories= _post.categories -%}
 	{%- endfor -%}
 </div>

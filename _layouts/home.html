@@ -1,23 +1,16 @@
 ---
 layout: default
 ---
+{%- include parse-theme-options.html -%}
+
 {%- if page.collection and page.collection != "" -%}
   {%- assign _collection = site.collections | where: "label" , page.collection | first -%}
 {%- else -%}
   {%- assign _collection = site.collections | where: "label" , "sections" | first -%}
 {%- endif -%}
-{%- assign _sections = _collection.docs | sort: 'order' -%}
-{%- include header.html scrolly_nav=_sections -%}
-{%- if site.theme-options.readmorelabel and site.theme-options.readmorelabel != "" -%}
-  {%- assign _readmorelabel = site.theme-options.readmorelabel -%}
-{%- else -%}
-  {%- assign _readmorelabel = "Read more" -%}
-  {%- endif -%}
-{%- if _collection.output -%}
-  {%- assign _output = _collection.output -%}
-{%- else -%}
-    {%- assign _output = false -%}
-{%- endif -%}
+{%- assign _sections = _collection.docs |sort: 'order' -%}
+{%- include header.html items_nav=_sections -%}
+{%- assign _output= _collection.output | default: false -%}
 <!-- Main -->
 <div id="main">
 	{%- if page.content != "" -%}
@@ -27,10 +20,11 @@ layout: default
 	{%- for _section in _sections -%}
     {%- if _output  -%}
       {%- capture _excerpt -%}<p>{{- _section.excerpt | strip_html | truncatewords: 100 -}}</p>{%- endcapture -%}
-      {%- capture _link -%}<a href="{{- _section.url | absolute_url -}}">{{- _readmorelabel | escape -}}</a>{%- endcapture -%}			{%- assign _content = _excerpt | append: _link -%}
-      {%- include section.html title=_section.title photo=_section.cover-photo photo-alt=_section.cover-photo-alt auto-header=_section.auto-header content=_content -%}
+      {%- capture _link -%}<a href="{{- _section.url -}}">{{- _themeOp_readmorelabel -}}</a>{%- endcapture -%}
+      {%- assign _content = _excerpt | append: _link -%}
+      {%- include section.html title=_section.title photo=_section.cover-photo photo-alt=_section.cover-photo-alt auto-header=_section.auto-header content=_content collection= _collection.label categories= _section.categories linktofullpage= true -%}
     {%- else -%}
-      {%- include section.html title=_section.title photo=_section.cover-photo photo-alt=_section.cover-photo-alt auto-header=_section.auto-header content=_section.content -%}
+      {%- include section.html title=_section.title photo=_section.cover-photo photo-alt=_section.cover-photo-alt auto-header=_section.auto-header content=_section.content collection= _collection.label categories= _section.categories -%}
     {%- endif -%}
 	{%- endfor -%}
 </div>
